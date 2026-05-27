@@ -19,3 +19,12 @@ Spicetify AutoUpdate is barebones, and simple. Code is pretty much common sense
 ```
 git clone https://github.com/nelvismyname/Spicetify-AutoUpdate.git
 ```
+
+## Star History
+<a href="https://www.star-history.com/?repos=nelvismyname%2FSpicetify-AutoUpdate&type=date&legend=top-left">
+ <picture>
+   <source media="(prefers-color-scheme: dark)" srcset="https://api.star-history.com/chart?repos=nelvismyname/Spicetify-AutoUpdate&type=date&theme=dark&legend=top-left" />
+   <source media="(prefers-color-scheme: light)" srcset="https://api.star-history.com/chart?repos=nelvismyname/Spicetify-AutoUpdate&type=date&legend=top-left" />
+   <img alt="Star History Chart" src="https://api.star-history.com/chart?repos=nelvismyname/Spicetify-AutoUpdate&type=date&legend=top-left" />
+ </picture>
+</a>
