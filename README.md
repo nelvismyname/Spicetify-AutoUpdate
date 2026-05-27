@@ -17,5 +17,5 @@ And that's it, Spicetify AutoUpdate will automatically update spicetify on start
 # Building
 Spicetify AutoUpdate is barebones, and simple. Code is pretty much common sense
 ```
-git clone https://github.com/nelvismyname/Backgroundify.git
+git clone https://github.com/nelvismyname/Spicetify-AutoUpdate.git
 ```
