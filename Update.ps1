@@ -16,7 +16,7 @@ if (-not (Get-Command spicetify -ErrorAction SilentlyContinue)) {
     iwr "https://raw.githubusercontent.com/spicetify/cli/main/install.ps1" -UseBasicParsing | iex
 }
 
-spicetify backup, upgrade, 'backup apply' 2>&1 | %{ $_ }
+spicetify backup; spicetify upgrade; spicetify 'backup apply'
 
 $SpicetifyVersion = spicetify -v 2>&1
 @('BalloonTipTitle', 'BalloonTipText') | %{ $NotifyIcon.$_ = @('Spicetify AutoUpdate', "Updated to $SpicetifyVersion")[[int]($_ -eq 'BalloonTipText')] }
