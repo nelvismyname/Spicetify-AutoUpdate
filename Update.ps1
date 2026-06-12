@@ -1,27 +1,24 @@
 Add-Type -AssemblyName System.Windows.Forms, System.Drawing
-$NotifyIcon = New-Object System.Windows.Forms.NotifyIcon
-$NotifyIcon.Icon = [System.Drawing.SystemIcons]::Information
-$NotifyIcon.Visible = $true
+$NotifyIcon = New-Object System.Windows.Forms.NotifyIcon -Property @{
+    Icon = [System.Drawing.SystemIcons]::Information
+    Visible = $true
+}
 
 $StartupLnk = "$env:APPDATA\Microsoft\Windows\Start Menu\Programs\Startup\Spicetify AutoUpdate.lnk"
 if (-not (Test-Path $StartupLnk)) {
-    $Shell = New-Object -ComObject WScript.Shell
-    $Shortcut = $Shell.CreateShortcut($StartupLnk)
+    $Shortcut = (New-Object -ComObject WScript.Shell).CreateShortcut($StartupLnk)
     $Shortcut.TargetPath = "$PSScriptRoot\Spicetify AutoUpdate.bat"
     $Shortcut.WorkingDirectory = $PSScriptRoot
     $Shortcut.Save()
 }
 
 if (-not (Get-Command spicetify -ErrorAction SilentlyContinue)) {
-    Invoke-WebRequest "https://raw.githubusercontent.com/spicetify/cli/main/install.ps1" -UseBasicParsing | Invoke-Expression
+    iwr "https://raw.githubusercontent.com/spicetify/cli/main/install.ps1" -UseBasicParsing | iex
 }
 
-spicetify backup   *> $null
-spicetify upgrade  *> $null
-spicetify backup apply *> $null
+spicetify backup, upgrade, 'backup apply' 2>&1 | %{ $_ }
 
-$SpicetifyVersion = (spicetify -v 2>$null).Trim()
-$NotifyIcon.BalloonTipTitle = "Spicetify AutoUpdate"
-$NotifyIcon.BalloonTipText = "Updated to $SpicetifyVersion"
+$SpicetifyVersion = spicetify -v 2>&1
+@('BalloonTipTitle', 'BalloonTipText') | %{ $NotifyIcon.$_ = @('Spicetify AutoUpdate', "Updated to $SpicetifyVersion")[[int]($_ -eq 'BalloonTipText')] }
 $NotifyIcon.ShowBalloonTip(3000)
 $NotifyIcon.Dispose()
