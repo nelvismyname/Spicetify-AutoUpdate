@@ -8,7 +8,7 @@ True non-intrusive Spicetify Auto Updater, barebones and standalone.
 > What do I mean by non-intrusive? This doesn't send any third party requests to anything but Spicetify only. The scripts contains just the necessary things needed, no useless/dead code included.
 
 # Installment
-1. Download the latest [Release](https://github.com/nelvismyname/Spicetify-AutoUpdate/release), Recommended: `"Source Code (zip)"`
+1. Download the latest [Release](https://github.com/nelvismyname/Spicetify-AutoUpdate/releases), `"Source Code (zip)"`
 2. Extract the `zip`
 3. Run `Spicetify AutoUpdate.bat`, No need for administrative privileges
 
